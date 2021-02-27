@@ -18,18 +18,23 @@ sub parse_args{
     if($ARGV[0] eq "start"){
         start(time());
     }
-    elsif($ARGV[0] eq "stop"){
-        stop(time());
+    else {
+        my $arg_str;
+        foreach my $arg(@ARGV){
+            $arg_str .=  " " . $arg; 
+        }
+        system("watson $arg_str");
     }
+    # elsif($ARGV[0] eq "stop"){
+    #     stop(time());
+    # }
 }
 
 sub get_project_and_tags_from_args{
 
     my $arg_str = "";
     # print("running...\n");
-    foreach my $arg(@ARGV){
-        $arg_str = $arg_str . " " . $arg; 
-    }
+    
     my $project_name;
     my $is_tag = 0;
     my @tags;
